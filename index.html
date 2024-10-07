@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documnent</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label,
+        button {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .output {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Konversi latin ke arab</h1>
+    <label for="latinInput">Masukkan teks Latin:</label>
+    <input type="text" id="latinInput" placeholder="">
+
+    <button id="convertButton">Konversi</button>
+
+    <div class="output" id="arabicOutput"></div>
+
+    <script>
+        const transliterationMap = {
+            "a": "ا",
+            "b": "ب",
+            "t": "ت",
+            "ts": "ث",
+            "j": "ج",
+            "h": "ح",
+            "kh": "خ",
+            "d": "د",
+            "dz": "ذ",
+            "r": "ر",
+            "z": "ز",
+            "s": "س",
+            "sy": "ش",
+            "sh": "ص",
+            "dh": "ض",
+            "th": "ط",
+            "zh": "ظ",
+            "ain": "ع",
+            "gh": "غ",
+            "f": "ف",
+            "q": "ق",
+            "k": "ك",
+            "l": "ل",
+            "m": "م",
+            "n": "ن",
+            "w": "و",
+            "ha": "ه",
+            "hm": "ء",
+            "y": "ي",
+            "la": "لا"
+        };
+
+        function convertToArabic(latinInput) {
+            let arabicOutput = '';
+
+            for (let char of latinInput) {
+                const arabicChar = transliterationMap[char.toLowerCase()];
+                if (arabicChar) {
+                    arabicOutput += arabicChar;
+                } else {
+                    arabicOutput += char; 
+                }
+            }
+            return arabicOutput;
+        }
+
+        document.getElementById("convertButton").addEventListener("click", () => {
+            const userInput = document.getElementById("latinInput").value.trim();
+            const arabicOutput = convertToArabic(userInput);
+            document.getElementById("arabicOutput").textContent = "Teks Arab yang dikonversi: " + arabicOutput;
+        });
+    </script>
+</body>
+
+</html>
